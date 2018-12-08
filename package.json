@@ -8,15 +8,20 @@
     "email": "17701023509@163.com"
   },
   "scripts": {
-    "dev": "webpack --mode=development --config webpack.config.js",
-    "build": "webpack --mode=production --config webpack.config.js"
+    "start": "webpack-dev-server",
+    "dev": "webpack --mode=development --config webpack.config.prod.js",
+    "build": "webpack --mode=production --config webpack.config.prod.js"
   },
   "license": "BSD",
   "dependencies": {
+    "dat.gui": "^0.7.3",
     "echarts": "^4.2.0-rc.2",
+    "expose-loader": "^0.7.5",
+    "jquery": "^3.3.1",
     "zrender": "^4.0.4"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"

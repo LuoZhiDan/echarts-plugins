@@ -39,7 +39,6 @@ var _default = echarts.extendChartView({
     },
     render: function (seriesModel, ecModel, api) {
         var coordSys = seriesModel.coordinateSystem;
-        var oldData = this._data;
         var data = seriesModel.getData();
         var baseAxis = coordSys.getBaseAxis();
         var isHorizontal = baseAxis.isHorizontal();
@@ -47,7 +46,7 @@ var _default = echarts.extendChartView({
         var showSymbol = seriesModel.get('showSymbol');
 
         // 进行代理模式包装实现，向后推移
-        proxy(data, seriesModel);
+        // proxy(data, seriesModel);
 
         // 标注
         var symbolDraw = this._symbolDraw;
@@ -318,7 +317,7 @@ function createArea(g, data, coordSys, seriesModel, isHorizontal, hasAnimation) 
     var faceWidth = seriesModel.get('faceWidth');
 
     //获取点数据
-    var points = data.mapArray(data.getItemLayout, true);
+    var points = data.mapArray(data.getItemLayout);
 
     // 上升点
     var upPoints = points.map(function (item, index) {

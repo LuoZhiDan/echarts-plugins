@@ -7,25 +7,32 @@ define(function (require) {
 
     require('./pie3d/Pie3dSeries');
     require('./pie3d/Pie3dView');
-    require('echarts/lib/action/createDataSelectAction')('pie3d', [{
+
+    var createDataSelectAction = require("echarts/lib/action/createDataSelectAction");
+
+    var dataColor = require("echarts/lib/visual/dataColor");
+
+    var dataFilter = require("echarts/lib/processor/dataFilter");
+
+    createDataSelectAction('pie', [{
         type: 'pieToggleSelect',
         event: 'pieselectchanged',
         method: 'toggleSelected'
-    }, {
+      }, {
         type: 'pieSelect',
         event: 'pieselected',
         method: 'select'
-    }, {
+      }, {
         type: 'pieUnSelect',
         event: 'pieunselected',
         method: 'unSelect'
-    }]);
+      }]);
 
-    echarts.registerVisual(zrUtil.curry(require('echarts/lib/visual/dataColor'), 'pie3d'));
+    echarts.registerVisual(dataColor('pie3d'));
 
     echarts.registerLayout(zrUtil.curry(
         require('./pie3d/pieLayout'), 'pie3d'
     ));
 
-    echarts.registerProcessor(zrUtil.curry(require('echarts/lib/processor/dataFilter'), 'pie3d'));
+    echarts.registerProcessor(dataFilter('pie3d'));
 });
